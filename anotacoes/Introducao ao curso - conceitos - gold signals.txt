@@ -1,0 +1,20 @@
+Golden Signals -> Sinais de ouro definidos pelo Google. 
+
+Se for para olhar 4 indicadores, devemos focar em:
+Latência -> Tempo de resposta da aplicação
+Tráfego -> Número de requisições que a aplicação recebe
+Saturação -> uso excedente
+Erros -> Quantidade de erro para o usuário
+
+Livro SRE do Google
+
+
+Metodos que facilitam a observabilidade e monitoramento em cima destes aspectos:
+Método Use -> Foca na Utilização destes recursos; na saturação e nos erros.
+Voltada para infraestrutura
+
+Método Red -> 	Rate -> Taxa de requisições; Erros e na duração das interações.
+
+MTTD -> Redução do Tempo Médio de Detecção
+MTTR -> Redução do Tempo Médio de Reparo
+Cumprimento do Acordo do Nivel de Serviço (SLA, SLO, EB e SLI)
