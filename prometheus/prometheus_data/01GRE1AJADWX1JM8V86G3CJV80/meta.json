@@ -1,0 +1,17 @@
+{
+	"ulid": "01GRE1AJADWX1JM8V86G3CJV80",
+	"minTime": 1675497602489,
+	"maxTime": 1675504800000,
+	"stats": {
+		"numSamples": 335011,
+		"numSeries": 945,
+		"numChunks": 2570
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01GRE1AJADWX1JM8V86G3CJV80"
+		]
+	},
+	"version": 1
+}

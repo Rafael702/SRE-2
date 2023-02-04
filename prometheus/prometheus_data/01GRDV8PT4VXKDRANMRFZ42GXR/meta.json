@@ -1,0 +1,17 @@
+{
+	"ulid": "01GRDV8PT4VXKDRANMRFZ42GXR",
+	"minTime": 1675491245467,
+	"maxTime": 1675497600000,
+	"stats": {
+		"numSamples": 168484,
+		"numSeries": 146,
+		"numChunks": 1168
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01GRDV8PT4VXKDRANMRFZ42GXR"
+		]
+	},
+	"version": 1
+}
