@@ -36,7 +36,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 46,
+      "id": 42,
       "panels": [
         {
           "datasource": {
@@ -74,7 +74,7 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 6,
+            "h": 8,
             "w": 12,
             "x": 0,
             "y": 1
@@ -114,116 +114,6 @@
             "type": "prometheus",
             "uid": "WiPJYp0Vz"
           },
-          "description": "Média de Uso da CPU",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 10,
-                "gradientMode": "opacity",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "never",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "short"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 11,
-            "x": 12,
-            "y": 1
-          },
-          "id": 44,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "lastNotNull"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "WiPJYp0Vz"
-              },
-              "editorMode": "code",
-              "expr": "system_load_average_1m{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\"}",
-              "legendFormat": "Load Average [1m]",
-              "range": true,
-              "refId": "A"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "WiPJYp0Vz"
-              },
-              "editorMode": "code",
-              "expr": "system_cpu_count{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\"}",
-              "hide": false,
-              "legendFormat": "CPU core size",
-              "range": true,
-              "refId": "B"
-            }
-          ],
-          "title": "LOAD AVERAGE",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "WiPJYp0Vz"
-          },
           "description": "Memória heap Utilizada",
           "fieldConfig": {
             "defaults": {
@@ -255,10 +145,10 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 6,
+            "h": 8,
             "w": 12,
             "x": 0,
-            "y": 7
+            "y": 9
           },
           "id": 38,
           "options": {
@@ -289,116 +179,6 @@
           ],
           "title": "HEAP USED",
           "type": "gauge"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "WiPJYp0Vz"
-          },
-          "description": "Utilizacao de CPU",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 10,
-                "gradientMode": "opacity",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "never",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "short"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 12,
-            "x": 12,
-            "y": 7
-          },
-          "id": 42,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "lastNotNull"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "WiPJYp0Vz"
-              },
-              "editorMode": "code",
-              "expr": "system_cpu_usage{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\"}",
-              "legendFormat": "System CPU usage",
-              "range": true,
-              "refId": "A"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "WiPJYp0Vz"
-              },
-              "editorMode": "code",
-              "expr": "process_cpu_usage{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\"}",
-              "hide": false,
-              "legendFormat": "Process CPU usage",
-              "range": true,
-              "refId": "B"
-            }
-          ],
-          "title": "CPU UTILIZATION",
-          "type": "timeseries"
         }
       ],
       "title": "API USE",
@@ -447,7 +227,7 @@
             "h": 5,
             "w": 6,
             "x": 0,
-            "y": 41
+            "y": 2
           },
           "id": 26,
           "options": {
@@ -518,7 +298,7 @@
             "h": 5,
             "w": 7,
             "x": 6,
-            "y": 41
+            "y": 2
           },
           "id": 22,
           "options": {
@@ -615,7 +395,7 @@
             "h": 5,
             "w": 11,
             "x": 13,
-            "y": 41
+            "y": 2
           },
           "id": 34,
           "options": {
@@ -738,7 +518,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 46
+            "y": 7
           },
           "id": 36,
           "options": {
@@ -837,7 +617,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 46
+            "y": 7
           },
           "id": 32,
           "options": {
@@ -963,7 +743,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 54
+            "y": 15
           },
           "id": 30,
           "options": {
@@ -1110,7 +890,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 54
+            "y": 15
           },
           "id": 24,
           "options": {
@@ -1256,7 +1036,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 62
+            "y": 23
           },
           "id": 28,
           "options": {
@@ -1360,7 +1140,7 @@
             "h": 5,
             "w": 4,
             "x": 0,
-            "y": 87
+            "y": 3
           },
           "id": 4,
           "options": {
@@ -1385,7 +1165,7 @@
                 "uid": "WiPJYp0Vz"
               },
               "editorMode": "code",
-              "expr": "process_uptime_seconds{application=\"$application\", instance=\"$instance\",job=\"app-forum-api\"}",
+              "expr": "process_uptime_seconds{application=\"app-forum-api\",instance=\"app-forum-api:8080\", job=\"app-forum-api\"}",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -1428,7 +1208,7 @@
             "h": 5,
             "w": 4,
             "x": 4,
-            "y": 87
+            "y": 3
           },
           "id": 12,
           "options": {
@@ -1491,7 +1271,7 @@
             "h": 5,
             "w": 4,
             "x": 8,
-            "y": 87
+            "y": 3
           },
           "id": 6,
           "options": {
@@ -1516,7 +1296,7 @@
                 "uid": "WiPJYp0Vz"
               },
               "editorMode": "code",
-              "expr": "process_start_time_seconds{application=\"app-forum-api\", instance=\"$instance\", job=\"app-forum-api\"} * 1000",
+              "expr": "process_start_time_seconds{application=\"app-forum-api\", instance=\"app-forum-api:8080\", job=\"app-forum-api\"} * 1000",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -1591,7 +1371,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 87
+            "y": 3
           },
           "id": 16,
           "options": {
@@ -1618,7 +1398,7 @@
                 "uid": "WiPJYp0Vz"
               },
               "editorMode": "code",
-              "expr": "hikaricp_connections_active{application=\"app-forum-api\", instance=\"$instance\",job=\"app-forum-api\", pool=\"$pool\"}",
+              "expr": "hikaricp_connections_active{application=\"app-forum-api\", instance=\"app-forum-api:8080\",job=\"app-forum-api\", pool=\"HikariPool-1\"}",
               "legendFormat": "active",
               "range": true,
               "refId": "A"
@@ -1684,7 +1464,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 92
+            "y": 8
           },
           "id": 10,
           "options": {
@@ -1709,7 +1489,7 @@
                 "uid": "WiPJYp0Vz"
               },
               "editorMode": "code",
-              "expr": "hikaricp_connections{application=\"app-forum-api\", instance=\"app-forum-api:8080\", job=\"app-forum-api\", pool=\"$pool\"}",
+              "expr": "hikaricp_connections{application=\"app-forum-api\", instance=\"app-forum-api:8080\", job=\"app-forum-api\", pool=\"HikariPool-1\"}",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -1756,7 +1536,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 92
+            "y": 8
           },
           "id": 14,
           "options": {
@@ -1824,7 +1604,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 92
+            "y": 8
           },
           "id": 18,
           "options": {
@@ -1849,7 +1629,7 @@
                 "uid": "WiPJYp0Vz"
               },
               "editorMode": "code",
-              "expr": "increase(hikaricp_connections_timeout_total{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\",pool=\"$pool\"}[1m])",
+              "expr": "increase(hikaricp_connections_timeout_total{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\",pool=\"HikariPool-1\"}[1m])",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -1954,7 +1734,7 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 96
+            "y": 12
           },
           "id": 8,
           "options": {
@@ -1980,7 +1760,7 @@
                 "uid": "WiPJYp0Vz"
               },
               "editorMode": "code",
-              "expr": "sum(increase(logback_events_total{application=\"app-forum-api\", instance=\"$instance\", job=\"app-forum-api\", level=\"warn\"}[5m]))",
+              "expr": "sum(increase(logback_events_total{application=\"app-forum-api\", instance=\"app-forum-api:8080\", job=\"app-forum-api\", level=\"warn\"}[5m]))",
               "legendFormat": "warn",
               "range": true,
               "refId": "A"
@@ -2107,6 +1887,6 @@
   "timezone": "",
   "title": "dash-forum-api",
   "uid": "8xfPYtA4k",
-  "version": 22,
+  "version": 24,
   "weekStart": ""
 }
