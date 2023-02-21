@@ -36,6 +36,382 @@
         "x": 0,
         "y": 0
       },
+      "id": 46,
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "WiPJYp0Vz"
+          },
+          "description": "Memória non-heap utilizada",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  },
+                  {
+                    "color": "semi-dark-purple",
+                    "value": 100
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 1
+          },
+          "id": 40,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "9.3.6",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "sum(jvm_memory_used_bytes{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\",area=\"nonheap\"})*100 / \r\nsum(jvm_memory_max_bytes{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\",area=\"nonheap\"})",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "NON-HEAP USED",
+          "type": "gauge"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "WiPJYp0Vz"
+          },
+          "description": "Média de Uso da CPU",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 11,
+            "x": 12,
+            "y": 1
+          },
+          "id": 44,
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "max",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "system_load_average_1m{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\"}",
+              "legendFormat": "Load Average [1m]",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "system_cpu_count{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\"}",
+              "hide": false,
+              "legendFormat": "CPU core size",
+              "range": true,
+              "refId": "B"
+            }
+          ],
+          "title": "LOAD AVERAGE",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "WiPJYp0Vz"
+          },
+          "description": "Memória heap Utilizada",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "max": 100,
+              "min": -1,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "semi-dark-red",
+                    "value": 80
+                  },
+                  {
+                    "color": "semi-dark-purple",
+                    "value": 100
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 7
+          },
+          "id": 38,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "9.3.6",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "sum(jvm_memory_used_bytes{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\",area=\"heap\"})*100 / sum(jvm_memory_max_bytes{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\",area=\"heap\"})",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "HEAP USED",
+          "type": "gauge"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "WiPJYp0Vz"
+          },
+          "description": "Utilizacao de CPU",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 7
+          },
+          "id": 42,
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "max",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "system_cpu_usage{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\"}",
+              "legendFormat": "System CPU usage",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "process_cpu_usage{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\"}",
+              "hide": false,
+              "legendFormat": "Process CPU usage",
+              "range": true,
+              "refId": "B"
+            }
+          ],
+          "title": "CPU UTILIZATION",
+          "type": "timeseries"
+        }
+      ],
+      "title": "API USE",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
       "id": 20,
       "panels": [
         {
@@ -71,7 +447,7 @@
             "h": 5,
             "w": 6,
             "x": 0,
-            "y": 1
+            "y": 41
           },
           "id": 26,
           "options": {
@@ -142,7 +518,7 @@
             "h": 5,
             "w": 7,
             "x": 6,
-            "y": 1
+            "y": 41
           },
           "id": 22,
           "options": {
@@ -175,6 +551,601 @@
           ],
           "title": "TOTAL REQUESTS",
           "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "WiPJYp0Vz"
+          },
+          "description": "Duração média de requisicoes no ultimo minuto",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 11,
+            "x": 13,
+            "y": 41
+          },
+          "id": 34,
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "max",
+                "mean",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "rate(http_server_requests_seconds_sum{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\", status=\"200\", uri=\"/topicos\"}[1m]) /\r\nrate(http_server_requests_seconds_count{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\", status=\"200\", uri=\"/topicos\"}[1m])",
+              "legendFormat": "{{uri}} {{method}} {{status}}",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "rate(http_server_requests_seconds_sum{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\", status=\"200\", uri=\"/topicos/{id}\"}[1m]) /\r\nrate(http_server_requests_seconds_count{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\", status=\"200\", uri=\"/topicos/{id}\"}[1m])",
+              "hide": false,
+              "legendFormat": "{{uri}} {{method}} {{status}}",
+              "range": true,
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "rate(http_server_requests_seconds_sum{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\", status=\"200\", uri=\"/auth\"}[1m]) /\r\nrate(http_server_requests_seconds_count{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\", status=\"200\", uri=\"/auth\"}[1m])",
+              "hide": false,
+              "legendFormat": "{{uri}} {{method}} {{status}}",
+              "range": true,
+              "refId": "C"
+            }
+          ],
+          "title": "AVERAGE REQUEST DURATION",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "WiPJYp0Vz"
+          },
+          "description": "Duração Maxima de uma Requisicao",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 46
+          },
+          "id": 36,
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "max",
+                "mean",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "http_server_requests_seconds_max{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\", status=\"200\", uri!=\"/actuator/prometheus\"}",
+              "legendFormat": "{{uri}} {{method}} {{status}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "MAX REQUEST DURATION",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "WiPJYp0Vz"
+          },
+          "description": "Numero de requisicoes por endpoint no ultimo minuto",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 46
+          },
+          "id": 32,
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "max",
+                "mean",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "sum(increase(http_server_requests_seconds_count{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\",uri=\"/topicos\"}[1m]))",
+              "legendFormat": "/topicos",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "sum(increase(http_server_requests_seconds_count{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\",uri=\"/topicos/{id}\"}[1m]))",
+              "hide": false,
+              "legendFormat": "/topicos/{id}",
+              "range": true,
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "sum(increase(http_server_requests_seconds_count{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\",uri=\"/auth\"}[1m]))",
+              "hide": false,
+              "legendFormat": "/auth",
+              "range": true,
+              "refId": "C"
+            }
+          ],
+          "title": "REQUEST COUNT",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "WiPJYp0Vz"
+          },
+          "description": "Latencia media por minuto",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "percent"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 54
+          },
+          "id": 30,
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "histogram_quantile(0.99,sum(rate(http_server_requests_seconds_bucket{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\", uri!=\"/actuator/prometheus\"}[1m])) by (le))",
+              "legendFormat": "99%",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "histogram_quantile(0.90,sum(rate(http_server_requests_seconds_bucket{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\", uri!=\"/actuator/prometheus\"}[1m])) by (le))",
+              "hide": false,
+              "legendFormat": "90%",
+              "range": true,
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "histogram_quantile(0.75,sum(rate(http_server_requests_seconds_bucket{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\", uri!=\"/actuator/prometheus\"}[1m])) by (le))",
+              "hide": false,
+              "legendFormat": "75%",
+              "range": true,
+              "refId": "C"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "histogram_quantile(0.50,sum(rate(http_server_requests_seconds_bucket{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\", uri!=\"/actuator/prometheus\"}[1m])) by (le))",
+              "hide": false,
+              "legendFormat": "50%",
+              "range": true,
+              "refId": "D"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "histogram_quantile(0.25,sum(rate(http_server_requests_seconds_bucket{application=\"app-forum-api\",instance=\"app-forum-api:8080\",job=\"app-forum-api\", uri!=\"/actuator/prometheus\"}[1m])) by (le))",
+              "hide": false,
+              "legendFormat": "25%",
+              "range": true,
+              "refId": "E"
+            }
+          ],
+          "title": "LATENCY AVERAGE",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "WiPJYp0Vz"
+          },
+          "description": "Tempo de resposta no ultimo minuto",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "stepAfter",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 2,
+                "pointSize": 10,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 54
+          },
+          "id": 24,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "min",
+                "lastNotNull",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "width": 0
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "WiPJYp0Vz"
+              },
+              "editorMode": "code",
+              "expr": "rate(http_server_requests_seconds_sum{application=\"app-forum-api\",instance=\"app-forum-api:8080\", job=\"app-forum-api\", uri!=\"/actuator/prometheus\"}[1m]) /\r\nrate(http_server_requests_seconds_count{application=\"app-forum-api\",instance=\"app-forum-api:8080\", job=\"app-forum-api\", uri!=\"/actuator/prometheus\"}[1m])",
+              "legendFormat": "{{uri}} {{method}} {{status}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "RESPONSE TIME",
+          "type": "timeseries"
         },
         {
           "datasource": {
@@ -285,7 +1256,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 6
+            "y": 62
           },
           "id": 28,
           "options": {
@@ -346,109 +1317,6 @@
           ],
           "title": "ERROR RATE",
           "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "WiPJYp0Vz"
-          },
-          "description": "Tempo de resposta no ultimo minuto",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 10,
-                "gradientMode": "hue",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "stepAfter",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 2,
-                "pointSize": 10,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "s"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 12,
-            "y": 6
-          },
-          "id": 24,
-          "options": {
-            "legend": {
-              "calcs": [
-                "max",
-                "min",
-                "lastNotNull",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true,
-              "width": 0
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "WiPJYp0Vz"
-              },
-              "editorMode": "code",
-              "expr": "rate(http_server_requests_seconds_sum{application=\"app-forum-api\",instance=\"app-forum-api:8080\", job=\"app-forum-api\", uri!=\"/actuator/prometheus\"}[1m]) /\r\nrate(http_server_requests_seconds_count{application=\"app-forum-api\",instance=\"app-forum-api:8080\", job=\"app-forum-api\", uri!=\"/actuator/prometheus\"}[1m])",
-              "legendFormat": "{{uri}} {{method}} {{status}}",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "RESPONSE TIME",
-          "type": "timeseries"
         }
       ],
       "title": "API RED",
@@ -460,7 +1328,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 1
+        "y": 2
       },
       "id": 2,
       "panels": [
@@ -492,7 +1360,7 @@
             "h": 5,
             "w": 4,
             "x": 0,
-            "y": 2
+            "y": 87
           },
           "id": 4,
           "options": {
@@ -560,7 +1428,7 @@
             "h": 5,
             "w": 4,
             "x": 4,
-            "y": 2
+            "y": 87
           },
           "id": 12,
           "options": {
@@ -623,7 +1491,7 @@
             "h": 5,
             "w": 4,
             "x": 8,
-            "y": 2
+            "y": 87
           },
           "id": 6,
           "options": {
@@ -723,7 +1591,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 2
+            "y": 87
           },
           "id": 16,
           "options": {
@@ -816,7 +1684,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 7
+            "y": 92
           },
           "id": 10,
           "options": {
@@ -888,7 +1756,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 7
+            "y": 92
           },
           "id": 14,
           "options": {
@@ -956,7 +1824,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 7
+            "y": 92
           },
           "id": 18,
           "options": {
@@ -1086,7 +1954,7 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 11
+            "y": 96
           },
           "id": 8,
           "options": {
@@ -1239,6 +2107,6 @@
   "timezone": "",
   "title": "dash-forum-api",
   "uid": "8xfPYtA4k",
-  "version": 20,
+  "version": 22,
   "weekStart": ""
 }
