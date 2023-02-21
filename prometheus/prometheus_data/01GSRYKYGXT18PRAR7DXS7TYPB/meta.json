@@ -1,0 +1,17 @@
+{
+	"ulid": "01GSRYKYGXT18PRAR7DXS7TYPB",
+	"minTime": 1676937604738,
+	"maxTime": 1676944800000,
+	"stats": {
+		"numSamples": 236550,
+		"numSeries": 592,
+		"numChunks": 2371
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01GSRYKYGXT18PRAR7DXS7TYPB"
+		]
+	},
+	"version": 1
+}
