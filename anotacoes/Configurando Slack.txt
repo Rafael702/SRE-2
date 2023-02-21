@@ -1,0 +1,10 @@
+Criar conta no Slack
+
+Criar canal no Slack
+
+Adicionar incoming webhook ao slack.
+Precisamos pegar a URL do webhook
+
+curl teste:
+
+curl -X POST --data-urlencode "payload={\"channel\": \"#forum-api\", \"username\": \"webhookbot\", \"text\": \"Isso é postado em #forum-api e originário de um bot chamado webhookbot.\", \"icon_emoji\": \":ghost:\"}" https://hooks.slack.com/services/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

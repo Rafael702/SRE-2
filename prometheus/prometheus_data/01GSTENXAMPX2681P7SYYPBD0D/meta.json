@@ -1,0 +1,17 @@
+{
+	"ulid": "01GSTENXAMPX2681P7SYYPBD0D",
+	"minTime": 1676988000379,
+	"maxTime": 1676995200000,
+	"stats": {
+		"numSamples": 278483,
+		"numSeries": 847,
+		"numChunks": 2322
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01GSTENXAMPX2681P7SYYPBD0D"
+		]
+	},
+	"version": 1
+}

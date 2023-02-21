@@ -1,0 +1,85 @@
+Para numerar as linhas no vim, basta digitar o comando:
+ESC
+:set nu
+
+Alerta configurado
+  - alert: 'QUEBRA DE SLO'
+    expr: (histogram_quantile(0.90, sum(rate(http_server_requests_seconds_bucket{job="app-forum-api",uri!="/actuator/prometheus"}[1m])) by (le))) >= 0.5
+    for: 1m
+    labels:
+      app: 'api-forum-alura'
+      severity: 'critical'
+      group: 'ops-forum-api'
+      env: 'production'
+    annotations:
+      title: 'QUEBRA DE SLO'
+      summary: '90% das requisições estão sendo atendidas a 500ms ou mais.'
+      description: 'API forum esta quebrando o SLO, 90% das requisições estão sendo atendidas em 500ms ou mais no último minuto.
+
+Um alerta tem roles (regras)
+Os alertas devem estar em uma tag groups:
+groups:
+ -name -> Nome do alerta
+  rules
+
+SLA, SLI, SLO: https://www.zendesk.com.br/blog/sli-sla-e-slo/
+
+SLO - Objetivo de Nivel de Serviço -> SLO para latência, disponibilidade
+
+expr -> Expressão. indicador do nivel de serviço.
+
+expr: (histogram_quantile(0.90, sum(rate(http_server_requests_seconds_bucket{job="app-forum-api",uri!="/actuator/prometheus"}[1m])) by (le))) >= 0.5
+
+Função: histogram_quantile. 
+0.90 -> Está olhando 90% do retorno da taxa (rate) da métrica http_server_requests_seconds_bucket. Estamos olhando para job app-forum-api e estamos olhando para todos os endpoints exceto o "/actuator/prometheus" em uma taxa de range de tempo de 1 minuto com a clausula by -> (le) [less or equal] e maior ou igual a 0.5 (500 milisegundos)
+https://prometheus.io/docs/prometheus/latest/querying/operators/#comparison-binary-operators
+
+for: 1m -> Olha por um minuto o retorno da métrica.
+
+Labels:
+app: 'api-forum-alura'
+severity: 'critical'
+group: 'ops-forum-api'
+env: 'production'
+São usadas pelo alert-manager. É uma configuração que vai tornar o envio desse alerta costumizavel.
+Anotações:
+annotations:
+      title: 'QUEBRA DE SLO'
+      summary: '90% das requisições estão sendo atendidas a 500ms ou mais.'
+      description: 'API forum esta quebrando o SLO, 90% das requisições estão sendo atendidas em 500ms ou mais no último minuto.
+
+As annotations são recebidas pelo alert-manager e são passadas para o target que é o slack
+summary: Resumo
+
+
+sum -> Agregação 
+O ideal não é usar variaveis no alert-manager
+
+Mostrando para o prometheus que ele tem que olhar para o arquivo de alertas.
+
+Para que o prometheus passe a olhar para o arquivo com os alertas configurados, é necessário colocar a tag rule_files com o nome do arquivo:
+rule_files:
+  - alert.rules
+
+Podemos deixar o arquivo alert.rules no mesmo path do prometheus.
+
+Também devemos informar para onde serão enviados os alertas do prometheus.
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - alertmanager-forum-api:9093
+
+alerting: alertmanagers: -> As regras de alerta são do alertmanager.
+- static_configs: -> Temos configurações estáticas 
+Dentro do - static_configs temos os targets.
+O target que será enviado é alertmanager-forum-api na porta 9093
+
+Inserção do volume:
+- ./prometheus/alert.rules:/etc/prometheus/alert.rules
+
+
+docker-compose up -d --remove-orphans
+
+Depois de subir o container, colocar na url:
+http://localhost:9090/alerts

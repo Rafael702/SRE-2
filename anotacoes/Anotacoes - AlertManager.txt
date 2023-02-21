@@ -1,0 +1,88 @@
+Configurando o arquivo alertmanager:
+
+Colocaremos a url do webhook na tag:
+
+slack_api_url:'https://hooks.slack.com/services/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'
+
+templates -> Repositório onde fica os templates que o alertmanager pode utilizar.
+Config default:
+templates:
+ - '/etc/alertmanager/template/*.tmpl'
+
+
+route: Rota
+group_by: [app, group, env] -> Os alertas possuem estas labels. Faremos um único agrupamento e assim teremos um único envio.
+receiver: 'ops-forum-api' -> Quem receberá este alerta
+group_wait -> Tempo de do grupo
+group_interval -> Intervalo entre uma espera e outra
+repeat_interval -> Tempo que vai demorar para repetir
+
+receivers: Indicamos o receiver na rota, podemos indicar mais de um e indicar eles novamento nesta tag.
+Devemos informar o name do receiver e a configuração do slack
+Nas configurações do slack, devemos informar  canal
+.
+Fica: - channel: '#forum-api'
+send_resolved: serve pra avisar assim que o canal for normalizado.
+icon_url: https://avatars3.githubusercontent.com/u/3380462 -> Icone do prometheus para customizar o slack.
+
+  title: |-
+ [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }} for {{ .CommonLabels.app }}
+ {{- if gt (len .CommonLabels) (len .GroupLabels) -}}
+ {{" "}}(
+ {{- with .CommonLabels.Remove .GroupLabels.Names }}
+ {{- range $index, $label := .SortedPairs -}}
+ {{ if $index }}, {{ end }}
+ {{- $label.Name }}="{{ $label.Value -}}"
+ {{- end }}
+ {{- end -}}
+ )
+ {{- end }}
+
+ [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }} for {{ .CommonLabels.app }} -> Vai verificar se o status está igual a "firing" e se estiver ele vai colocar o nome do alerta e o nome do app.
+
+ text: >-
+ {{ range .Alerts -}}
+ *Alert:* {{ .Annotations.title }}{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
+
+ *Summary:* {{ .Annotations.summary }}
+ 
+ *Description:* {{ .Annotations.description }}
+ 
+ *Details:*
+ {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+ {{ end }}
+ {{ end }}
+
+No texto que será enviado para o canal do Slack consta:
+Nome do Alerta, resumo, descrição e detalhes
+
+*Alert:* {{ .Annotations.title }}{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }} -> Titulo do Alerta
+
+*Summary:* {{ .Annotations.summary }} -> Breve Descrição\ Resumo
+
+ *Description:* {{ .Annotations.description }} -> Descrição detalhada
+
+*Details:*
+ {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+ {{ end }} -> Traz as labels que foram configuradas.
+
+No docker-compose colocaremos o bloco:
+alertmanager-forum-api:
+    image: prom/alertmanager
+    container_name: alertmanager-forum-api
+    volumes:
+      - ./alertmanager:/etc/alertmanager/:ro
+    ports:
+      - 9093:9093
+    command:
+      - --config.file=/etc/alertmanager/alertmanager.yml
+    networks:
+      - monit
+    depends_on:
+      - prometheus-forum-api
+
+Estas configurações eram encontradas no site:
+https://juliusv.com/promslack ou procurar por Alertmanager Slack Playground
+
+Abrir no browser:
+localhost:9093

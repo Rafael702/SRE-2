@@ -1,0 +1,9 @@
+4 Golden Signals
+
+Latencia
+Erros
+Trafego
+Saturação
+
+https://elven.works/livro-sre-google/-> Livro em Português
+https://sre.google/books/ -> Livro em ingles
